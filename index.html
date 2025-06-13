@@ -1,0 +1,654 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>PAGINA WEB</title>
+
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #1a365d;
+            background: linear-gradient(135deg, 
+                #667eea 0%, 
+                #764ba2 25%, 
+                #f093fb 50%, 
+                #f5576c 75%, 
+                #4facfe 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+            z-index: -1;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        header {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.95) 0%, 
+                rgba(255, 255, 255, 0.85) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            transform: translateY(0);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        header:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            text-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+            position: relative;
+        }
+
+        .subtitle {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.4em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .info-card, .highlight-section, .text-section {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.95) 0%, 
+                rgba(255, 255, 255, 0.85) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.1),
+                0 5px 15px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .info-card::before, .highlight-section::before, .text-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, 
+                #667eea 0%, 
+                #764ba2 25%, 
+                #f093fb 50%, 
+                #f5576c 75%, 
+                #4facfe 100%);
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .info-card:hover, .highlight-section:hover, .text-section:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.15),
+                0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title, h2 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .card-icon:hover {
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.4);
+        }
+
+        .card-content, p {
+            color: #2d3748;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        h3 {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        h4 {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, 
+                rgba(102, 126, 234, 0.1) 0%, 
+                rgba(240, 147, 251, 0.1) 50%, 
+                rgba(79, 172, 254, 0.1) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            border: 3px dashed rgba(102, 126, 234, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .image-placeholder:hover::before {
+            opacity: 1;
+            animation: shimmer 1.5s ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .image-placeholder:hover {
+            background: linear-gradient(135deg, 
+                rgba(102, 126, 234, 0.2) 0%, 
+                rgba(240, 147, 251, 0.2) 50%, 
+                rgba(79, 172, 254, 0.2) 100%);
+            border-color: rgba(102, 126, 234, 0.5);
+            transform: scale(1.02);
+        }
+
+        .image-text {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2em;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+		
+		       h1 {
+    font-family: 'Georgia', serif;
+}
+     p {
+    font-family: 'Times New Roman', monospace;
+}
+    h1, h2, h3, h4 {
+    font-family: 'Georgia', serif;
+}
+
+        .data-table th, .data-table td {
+            padding: 18px;
+            text-align: left;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: linear-gradient(135deg, 
+                rgba(102, 126, 234, 0.03) 0%, 
+                rgba(240, 147, 251, 0.03) 100%);
+        }
+
+        .data-table tr:hover {
+            background: linear-gradient(135deg, 
+                rgba(102, 126, 234, 0.08) 0%, 
+                rgba(240, 147, 251, 0.08) 100%);
+            transform: scale(1.01);
+            transition: all 0.3s ease;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.95) 0%, 
+                rgba(255, 255, 255, 0.85) 100%);
+            backdrop-filter: blur(20px);
+            padding: 25px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f093fb, #f5576c, #4facfe);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        footer {
+            background: linear-gradient(135deg, 
+                rgba(26, 54, 93, 0.95) 0%, 
+                rgba(26, 54, 93, 0.85) 100%);
+            backdrop-filter: blur(20px);
+            color: #e2e8f0;
+            text-align: center;
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 50px;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            color: #cbd5e0;
+            margin: 5px 0;
+        }
+
+        img {
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #5a6fd8, #6a4190);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .info-card, .highlight-section, .text-section {
+                padding: 20px;
+            }
+        }
+
+        /* Animaciones adicionales */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .info-card, .highlight-section, .text-section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .info-card:nth-child(1) { animation-delay: 0.1s; }
+        .info-card:nth-child(2) { animation-delay: 0.2s; }
+        .info-card:nth-child(3) { animation-delay: 0.3s; }
+        .info-card:nth-child(4) { animation-delay: 0.4s; }
+		
+		.info-box {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #d4fc79, #96e6a1);
+    color: #1e3d2f;
+    font-size: 1.1em;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    text-align: center;
+    font-weight: 500;
+}
+
+    </style>
+
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <h1>ACUAPONIA</h1>
+        <p class="subtitle">PÁGINA WEB - PROYECTO ACUAPONIA</p>
+        
+        <div class="info-box">
+            <strong>María Fernanda Perilla Garzón</strong><br>
+            <span>Undécimo C</span>
+        </div>
+    </header>
+	
+        <div class="highlight-section">
+            <h2>INTRODUCCION</h2>
+            <p>La crisis del agua representa uno de los problemas medioambientales más preocupantes de la modernidad, particularmente en áreas como la región de la Orinoquía en Colombia, donde la agricultura intensiva y los métodos de cultivo convencionales ejercen una presión sobre los recursos hídricos. En estas circunstancias, surge la necesidad de implementar alternativas sustentables que incentiven el uso ideal del recurso en la producción agrícola, preservando conjuntamente la capacidad productiva necesaria para garantizar y proteger la seguridad alimentaria de la región. 
+     La acuaponía es un sistema de cultivo que combina la acuicultura (cría de peces) y la hidroponía (cultivo de plantas sin suelo) en un entorno cerrado y auto sostenible. En este sistema, los desechos de los peces se transforman en nutrientes que las plantas pueden absorber, mientras que las raíces de las plantas filtran y purifican el agua, devolviéndola limpia al entorno colectivo de los peces. Este proceso crea un ciclo ecológico responsable que reduce el uso de agua y fertilizantes, haciendo de la acuaponía una técnica sostenible. 
+			</p>
+        </div>
+		
+		<div class="highlight-section">
+            <h2>PREGUNTA DE INVESTIGACION</h2>
+            <p>¿Qué beneficios aportan la lechuga de agua (Pistia stratiotes ) y lenteja de agua (Lemma Minor)a la purificación del agua en un sistema acuapónico desarrollado en las instalaciones del Instituto Técnico Ambiental San Mateo durante los años 2024 y 2025? 
+			</p>
+        </div>
+		
+		<div class="highlight-section">
+            <h2>OBJETIVO GENERAL</h2>
+            <p>Analizar el rendimiento de la lechuga de agua (Pistia stratiotes ) y lenteja de agua (Lemma Minor) través de registros y comparaciones para garantizar un mejor proceso de purificación del agua en un sistema acuaponíco implementando en el Instituto Técnico Ambiental San Mateo. 
+			</p>
+        </div>
+
+		<div class="text-section">
+            <h2>MARCO DE REFERENCIA:</h2>
+            <h3>ESTADO DEL ARTE</h3>
+            <p>Aguirre (2023), realizó un estudio sobre la implementación y evaluación de un sistema acuapónico para la producción de peces y vegetales, titulada: ABSORCION DE NITROGENO Y FOSFORO MEDIANTE EL USO DE Ocimumbasilicum (ALBAHACA) EN UN SISTEMA ACUAPONICO CON CULTIVO DE 
+Oreochromis niloticus (TILAPIA). Analizando su viabilidad y eficiencia en comparación con métodos tradicionales como la hidroponía y la acuicultura convencional. La investigación se llevó a cabo en Universidad Nacional Agraria de la Selva, Facultad de Recursos Naturales Renovables Escuela Profesional de Ingeniería Ambiental, Tingo María  Perú, donde se estableció un sistema acuapónico con especies seleccionadas tanto en el componente acuícola como en el vegetal. Durante el proceso, se monitorearon parámetros clave como la calidad del agua, el pH, la concentración de nutrientes (nitrógeno, fósforo, potasio), la oxigenación y la temperatura, con el objetivo de evaluar la absorción de nitrógenos y fosforo mediante el uso Ocimum basilicum (albahaca) en un sistema acuapónico con cultivo de tilapia. La metodología empleada consistió en el seguimiento continuo de estos parámetros mediante técnicas de medición estándar, además de la comparación de los resultados obtenidos en el sistema acuapónico con los de un sistema hidropónico convencional. Se realizaron análisis periódicos para evaluar la eficiencia en la absorción de nutrientes por parte de las plantas y la retención de compuestos nitrogenados en el agua. Asimismo, se registraron tasas de crecimiento, rendimiento y supervivencia en ambas partes del sistema. Los resultados indicaron que la acuaponía representa una alternativa sostenible y altamente eficiente, ya que permite un uso optimizado del agua al reciclar los desechos de los peces como fuente de nutrientes para las plantas, reduciendo así la necesidad de fertilizantes sintéticos y minimizando el impacto ambiental. Además, se observó que el sistema acuapónico favorece un equilibrio biológico estable, promoviendo una mayor productividad con menor consumo de recursos en comparación con los sistemas convencionales. En conclusión, la investigación demuestra que la acuaponía es una estrategia viable para la producción agroalimentaria sostenible, combinando la acuicultura y la horticultura en un entorno cerrado y autorregulado. Este modelo no solo contribuye a la optimización del uso del agua y la reducción de residuos, sino que también ofrece una alternativa económica y ecológica para la producción de alimentos en diversas condiciones ambientales.  
+ </p>
+            <h3>ANTECEDENTES NACIONALES</h3>
+            <p>     Ballen (2023),  llevó a cabo la investigación titulada "Revisión de plantas fitorremediadoras con capacidad de remoción de plomo en cuerpos de agua", desarrollada en la Universidad Cooperativa de Colombia, sede Bogotá. El estudio surgió debido a la preocupación por la contaminación de cuerpos de agua con plomo, principalmente causada por actividades mineras e industriales, lo que representa un grave riesgo ambiental y de salud pública. Su objetivo principal fue realizar un análisis exhaustivo de la literatura existente sobre el uso de plantas fitorremediadoras para la remoción de plomo en ecosistemas acuáticos, evaluando sus beneficios, limitaciones y posibles aplicaciones en Colombia. Para ello, se llevó a cabo una revisión sistemática de la literatura basada en 30 artículos científicos obtenidos de bases de datos como ScienceDirect, Dialnet, Scielo, ElSevier, Google Scholar, eLibro y repositorios institucionales, con un rango temporal de 2012 a 2023. Se analizaron 36 especies vegetales con capacidad de bioacumulación de metales pesados, evaluando su porcentaje de remoción y el tiempo necesario para alcanzar niveles significativos de descontaminación. Entre los principales hallazgos, se identificó que especies como Chrysopogon zizanioides y Alternathera philoxeroides presentan un alto porcentaje de remoción de plomo en un tiempo relativamente corto, lo que las convierte en candidatas ideales para proyectos de fitorremediación en Colombia. Sin embargo, se advirtió que muchas de las especies con mayor eficiencia en la remoción de plomo son invasoras, lo que podría generar impactos negativos en los ecosistemas locales si no se implementan medidas de control adecuadas. En conclusión, el estudio reafirma que la fitorremediación es una alternativa viable, sostenible y de bajo costo para la remoción de metales pesados en cuerpos de agua contaminados, pero su aplicación requiere un manejo estratégico para maximizar sus beneficios y minimizar posibles riesgos ecológicos.</p>
+            
+            <h3>ANTECEDENTES LOCALES</h3>
+            <p>     Barrera y Arías (2021), llevaron a cabo la investigación titulada "Propuesta para la estandarización de procesos productivos en la empresa Acuaponía Casanare S.A.S.", desarrollada en la Universidad de La Salle, Facultad de Ingeniería, en Bogotá, Colombia. El estudio surgió ante la necesidad de mejorar la eficiencia operativa de la empresa Acuaponía Casanare S.A.S., dedicada a la producción y comercialización de peces mediante sistemas acuapónicos, un modelo que combina la acuicultura con la hidroponía para lograr una producción sostenible. Su objetivo principal fue diseñar una propuesta de estandarización de los procesos productivos con el fin de optimizar la gestión de recursos, reducir costos operacionales, mejorar los tiempos de producción y garantizar la calidad del producto final. Para ello, se adoptó una metodología basada en la caracterización detallada de los procesos productivos, la identificación de puntos críticos de control y la aplicación de herramientas de ingeniería como el estudio de tiempos y métodos, el diagrama de Ishikawa y el análisis DOFA, con el propósito de detectar oportunidades de mejora y establecer procedimientos eficientes. Los resultados evidenciaron que la ausencia de estandarización en la empresa generaba variabilidad en la producción, desperdicio de insumos, dificultades en la planificación y deficiencias en la gestión de inventarios, afectando la calidad y competitividad del negocio. La propuesta desarrollada permitió estructurar un modelo de producción documentado y optimizado, estableciendo lineamientos claros para cada etapa del proceso productivo, desde la recepción de insumos hasta la comercialización del producto. En conclusión, la investigación demostró que la implementación de estándares productivos es clave para la sostenibilidad y crecimiento de la empresa, mejorando la trazabilidad y el control de calidad en cada fase del proceso. Se recomendó la aplicación gradual del modelo propuesto, acompañado de capacitaciones al personal para asegurar su correcta ejecución y la integración de tecnologías que fortalezcan la eficiencia operativa y la sostenibilidad ambiental de la empresa. </p>
+			
+			</div>
+			<div class="text-section">
+            <h2>MARCO CONTEXTUAL</h2>
+            <p>     Yopal, municipio capital del departamento de Casanare, goza de una posición geográfica estratégica, al estar localizado al oriente de Colombia, en el corazón del Llano colombiano y la región de la Orinoquia, a una altura promedio de 300 msnm, con condiciones de clima cálido-húmedo y temperatura promedio de 27°C; dista a 327 kilómetros de la ciudad de Bogotá, a 262 kilómetros de Villavicencio y a 198 kilómetros del eje Cundiboyacense. Así mismo se caracteriza por ser el municipio capital de departamento más joven con tan solo 77 años de vida jurídico-administrativa, conformado en su parte rural por 11 corregimientos y 96 veredas. La parte urbana está conforma por 7 comunas y 104 barrios. Municipio que tiene una extensión de 2.532 km2, que corresponde al 5,67% del total del departamento, cuyo territorio se caracteriza por presentar tres ecosistemas bien marcados, montaña que representa el 15% del área del municipio, piedemonte con el 20% y llanura 65%, caracterizados por tener potencialidades ambientales que son soportadas por dos grandes cuencas hidrográficas, Charte y Cravo sur, sobre las cuales están asentadas las actividades agropecuarias, los centros poblados y el crecimiento de la ciudad de Yopal.
+			     Yopal se encuentra en una ubicación geográfica particular, en el Piedemonte llanero, lo que influye significativamente en su hidrografía. El municipio se sitúa entre las cuencas hidrográficas de dos ríos importantes: el Río Charte, que marca su límite al occidente, y el Río Cravo Sur, que tiene su origen en la cordillera oriental. Esta ubicación le otorga una riqueza hídrica considerable. En un contexto más amplio, el departamento de Casanare se caracteriza por su abundancia de recursos hídricos, incluyendo ríos, caños, lagunas y humedales. Esta extensa red hídrica no solo contribuye a la biodiversidad de flora y fauna en los Llanos, sino que también desempeña un papel crucial como medio de comunicación y transporte, especialmente durante las temporadas de lluvias. Dentro de este sistema, el Río Cravo Sur emerge como una de las fuentes hídricas más destacadas para el municipio de Yopal, con una periferia conectada por una serie de caños y riachuelos. También hay que resaltar el beneficio que representa la mejora de los caños, reconociendo su importancia para el municipio, especialmente en un contexto de crecimiento urbano que podría llevar a su desaprovechamiento.
+			</p>
+			</div>
+
+        <div class="text-section">
+            <h2>MARCO CONCEPTUAL</h2>
+            <h3>ACUAPONIA</h3>
+            <p>La acuaponía es un sistema de producción agrícola que integra la acuicultura (cría de peces) con la hidroponía (cultivo de plantas sin suelo), creando un ecosistema cerrado y sostenible donde los desechos producidos por los peces se transforman en nutrientes para las plantas, mientras que estas purifican el agua para los peces. Este proceso se basa en el ciclo del nitrógeno, donde bacterias nitrificantes convierten el amoníaco tóxico generado por los peces en nitritos y luego en nitratos, que son absorbidos por las plantas como fertilizantes naturales. La acuaponía representa una alternativa innovadora a la agricultura tradicional, con un enfoque en la eficiencia del uso del agua y la producción simultánea de alimentos vegetales y animales. Además, permite un manejo controlado de parámetros ambientales como pH, temperatura y oxígeno disuelto, fundamentales para mantener el equilibrio del sistema. </p>
+            
+			<div><h4>Figura 1<br><h4/></div><br>
+			<div>
+			<img src="acuaponia.jpg" alt="" style="max-width: 100%; height: auto;" /> <br>
+    <div>Sistema acuapónico [Fotografia] por Villamil. (2024). Acuaponía: la agricultura del presente y del futuro.<br></div>
+</div>
+
+			
+			<h3>RENDIMIENTO VEGETAL EN SISTEMAS ACUAPONICOS</h3>
+            <p>El crecimiento y rendimiento de las plantas en sistemas acuapónicos dependen de múltiples factores ambientales y de manejo. La calidad del agua es fundamental, incluyendo el control del pH, la concentración de nutrientes como nitratos, amonio y fosfatos, y la presencia de microorganismos benéficos que facilitan la disponibilidad de nutrientes. Además, la suplementación con elementos como potasio, calcio y ácido fúlvico puede mejorar la absorción de nutrientes y el desarrollo vegetal. La temperatura y la luz también influyen directamente en la fotosíntesis y metabolismo de las plantas. Por otra parte, la alimentación y salud de los peces afectan la cantidad y calidad de nutrientes disponibles para las plantas, estableciendo una relación mutualista que es clave para el equilibrio del sistema. Sin embargo, en muchos casos es necesario complementar con nutrientes externos para mantener un rendimiento óptimo.</p>
+			
+			
+			<h3>LECHUGA DE AGUA (PISTIA STRATIOTES)</h3>
+            <p>Pistia stratiotes es una planta acuática flotante, perenne y monoica, que se reproduce tanto sexualmente por semillas como asexualmente mediante estolones. Sus hojas forman rosetas gruesas y carnosas, de color verde grisáceo, cubiertas por pelos hidrófobos que le permiten flotar. Puede alcanzar tamaños de hasta 20 cm, con nervaduras paralelas y una estructura esponjosa que facilita la flotabilidad. Esta especie tiene un rápido crecimiento, capaz de duplicar su biomasa en 10 a 15 días bajo condiciones óptimas de temperatura y nutrientes. </p>
+            
+			<div><h4>Figura 2<br><h4/></div><br>
+			<div>
+			<img src="lechugadeagua.jpg" alt="" style="max-width: 40%; height: auto;" /> <br>
+    <div>Lechuga de agua como herramienta ambiental  para la purificación en procesos de sistemas acuapónicos. [Fotografía] por Cambiagro, 2023.<br></div>
+</div>
+			
+			<h3>LENTEJA DE AGUA</h3>
+            <p> La lenteja de agua (Lemna minor) es una de las plantas angiospermas acuáticas de más rápido crecimiento en el mundo, caracterizada por su cuerpo vegetativo en forma taloide, pequeño, plano y de color verde, con una sola raíz delgada de color blanco. Generalmente, cada fronde mide entre 2 y 6 mm de longitud y flota libremente en la superficie de aguas tranquilas, como charcos, ciénagas, lagos y ríos de corriente lenta. Su estructura simple, sin diferenciación clara entre tallo y hojas, le permite ocupar grandes extensiones en poco tiempo.
+La reproducción de Lemna minor es principalmente asexual, por gemación lateral, lo que le otorga una alta tasa de multiplicación y colonización de hábitats acuáticos. Bajo condiciones óptimas de temperatura (15-18 °C), pH (4.5-7) y abundancia de nutrientes, puede duplicar su biomasa en menos de dos días, lo que la convierte en una de las especies vegetales de mayor tasa de crecimiento conocida 
+</p>
+            
+			<div><h4>Figura 3<br><h4/></div><br>
+			<div>
+			<img src="lentejadeagua.jpg" alt="" style="max-width: 40%; height: auto;" /> <br>
+    <div>Lenteja de agua en un sistema acuapónico implementado en el Instituto Tecnico Ambiental, [Fotografía] por Castillo, 2025.<br></div>
+</div>
+			<h3>PURIFICACION DEL AGUA</h3>
+            <p> El concepto de calidad de agua, según el Ministerio de Salud y Protección Social (2020), se refiere al conjunto de características físicas, químicas y microbiológicas que debe cumplir el agua para ser apta para el consumo humano, garantizando la protección de la salud de la población. La calidad del agua se determina mediante el análisis de parámetros como turbiedad, color, olor, sabor, presencia de microorganismos patógenos, concentración de sustancias químicas (como metales pesados, nitratos, pesticidas, entre otros) y la presencia de contaminantes emergentes.  
+    La calidad del agua para consumo humano debe cumplir con los valores máximos permisibles establecidos en la normatividad nacional, los cuales están alineados con los lineamientos de la Organización Mundial de la Salud (OMS). Estos parámetros buscan asegurar que el agua no represente riesgos para la salud a corto ni largo plazo. Además, la vigilancia de la calidad del agua implica un monitoreo constante y la implementación de acciones correctivas en caso de detectar desviaciones respecto a los estándares establecidos.
+</p>
+            
+			<div><h4>Figura 4<br><h4/></div><br>
+			<div>
+			<img src="sistemapurificacion.jpg" alt="" style="max-width: 100%; height: auto;" /> <br>
+    <div>Sistema para la purificacion del agua en un sistema acuapónico implementado en el Instituto Tecnico Ambiental<br></div>
+</div>
+			
+			<h3>APLICACION DEL SISTEMA EN EL INSTITUTO TECNICO AMBIENTAL SAN MATEO</h3>
+            <p> La implementación de un sistema acuapónico en el Instituto Técnico Ambiental San Mateo se justifica plenamente al ser una estrategia educativa innovadora que integra el aprendizaje teórico y práctico en torno a la sostenibilidad, el uso eficiente de los recursos naturales y la gestión ambiental responsable. Este tipo de proyecto permite a la comunidad educativa abordar de manera integral problemáticas actuales como la seguridad alimentaria, el manejo racional del agua y la producción limpia, en coherencia con los principios de la Política Nacional de Educación Ambiental. Además, la acuaponía fomenta la reflexión crítica sobre la relación entre sociedad y naturaleza, fortalece competencias científicas y tecnológicas, y promueve la participación activa de los estudiantes en la búsqueda de soluciones locales a desafíos ambientales. De esta manera, el sistema acuapónico contribuye a la formación de ciudadanos comprometidos con el desarrollo sostenible y el Buen Vivir, posicionando al Instituto Técnico Ambiental San Mateo como referente en educación ambiental contextualizada y pertinente.
+</p>
+            </div>
+			
+			<div class="text-section">
+            <h2>MARCO HISTORICO</h2>
+            <p>La acuaponía es una técnica agrícola y acuícola integrada que tiene sus raíces en prácticas ancestrales desarrolladas por antiguas civilizaciones. En Mesoamérica, la cultura azteca fue pionera en la construcción de chinampas entre los años 1150 y 1350 d.C., islas artificiales flotantes sobre lagos poco profundos. En estos sistemas, los aztecas cultivaban plantas y criaban peces en los canales circundantes, utilizando los desechos de los peces como fertilizante natural para los cultivos. Este método demuestra un temprano entendimiento de los ciclos ecológicos y la reutilización eficiente de recursos, sentando las bases para la integración de la acuicultura y la agricultura en un solo sistema productivo.
+En Asia, especialmente en China, existen registros históricos de la integración de la acuicultura y la agricultura en arrozales inundados desde hace más de mil años. Los agricultores chinos desarrollaron técnicas para criar peces en los campos de arroz, aprovechando los nutrientes generados por los animales para enriquecer el suelo y controlar plagas. Este sistema permitió optimizar el uso del agua y los nutrientes, estableciendo un modelo de producción circular que beneficiaba tanto a los cultivos como a la cría de peces (UPRM, 2024).
+El desarrollo moderno de la acuaponía comenzó en la segúnda mitad del siglo XX, cuando investigadores en Estados Unidos retomaron la idea de utilizar plantas como filtros biológicos en sistemas de acuicultura. En la década de 1970, instituciones como el Instituto New Alchemy y científicos como James Rakocy desarrollaron los primeros sistemas de recirculación de agua, lo que permitió mejorar la eficiencia y sostenibilidad de la producción acuapónica. Estos avances sentaron las bases para la expansión de la acuaponía como una tecnología viable en contextos urbanos y rurales.
+
+</p>
+
+</div>
+			<div class="text-section">
+            <h2>MARCO LEGAL</h2>
+            <p>El desarrollo de la acuaponía en Colombia se encuentra respaldado por un marco normativo amplio y especializado, el cual ha sido construido a lo largo de los años para regular la pesca, la acuicultura y, más recientemente, la integración de ambas en sistemas sostenibles de producción de alimentos. Este conjunto de disposiciones jurídicas no solo establece lineamientos para el aprovechamiento responsable de los recursos hidrobiológicos, sino que también busca garantizar la seguridad alimentaria, el desarrollo rural y la protección ambiental en el país. En este contexto, resulta imprescindible destacar que la Constitución Política de Colombia de 1991 consagra en su artículo 65 la especial protección que el Estado debe brindar a la producción de alimentos, priorizando actividades como la agrícola y la pesquera, en aras de asegurar su desarrollo integral, y estableciendo como deber estatal la promoción de estas prácticas bajo parámetros de sostenibilidad (Congreso de Colombia, 1991).
+En complemento a este mandato constitucional, la Ley 13 de 1990, conocida como el Estatuto General de Pesca, se constituye como una de las normas pilares en la regulación de la acuicultura y la pesca en Colombia. Esta disposición define la actividad pesquera como el proceso que comprende la investigación, extracción, cultivo, procesamiento y comercialización de recursos pesqueros, y dispone en su artículo 43 que el Gobierno Nacional fomentará el desarrollo de la acuicultura, especialmente a través de la creación de instalaciones destinadas a la reproducción de especies en cautiverio y al abastecimiento de semillas para dicha actividad (Congreso de Colombia, 1990). Asimismo, en el artículo 42 de esta ley se establece que la Autoridad Nacional de Acuicultura y Pesca (AUNAP) será la entidad encargada de administrar, fomentar y controlar la actividad acuícola y pesquera, expidiendo las normas y requisitos necesarios para su ejercicio, lo cual incluye permisos, concesiones y autorizaciones.
+</p>
+      <p>Para más información, visita 
+    <a href="https://https://https://es.wikipedia.org/wiki/Acuapon%C3%ADa"target="_blank">Wikipedia sobre Acuaponia</a>.
+</p>
+
+		</div>
+</div>
+        <!-- Pie de Página -->
+        <footer>
+            <p>Pagina web elaborado por: Maria Fernanda Garzon Perilla / Instituto Tecnico Ambiental San Mateo</p>
+            <p>Fecha de elaboración: 8/06/2025</p>
+        </footer>
+    </div>
+
+</body>
+</html>
